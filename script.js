@@ -26,6 +26,17 @@ const gameBoard = (() => {
     };
 })();
 
+// gameState module
+const gameState = (() => {
+    let _turnNumber = 0;
+
+    function getTurnNumber() {
+        return _turnNumber;
+    };
+
+    return {getTurnNumber};
+})();
+
 // Player factory
 const Player = (name, piece) => {
     const getName = () => name;
