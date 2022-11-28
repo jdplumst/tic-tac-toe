@@ -20,3 +20,10 @@ td {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
+
+/* Winner Message */
+
+.winner {
+    text-align: center;
+    margin-top: 30px;
+}

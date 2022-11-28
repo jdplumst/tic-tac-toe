@@ -1,4 +1,5 @@
 const gameBoardCells = document.querySelectorAll('td');
+const winnerMsg = document.querySelector('.winner');
 
 // gameBoard module
 const gameBoard = (() => {
@@ -45,7 +46,7 @@ const Player = (name, piece) => {
 // gameState module
 const gameState = (() => {
     let _turnNumber = 0;
-    let _players = [Player('jimmy', 'X'), Player('bob', 'O')];
+    let _players = [Player('Jimmy', 'X'), Player('Bob', 'O')];
     let _index = -1; // Game Board index
 
     function _nextTurn() {
@@ -75,78 +76,78 @@ const gameState = (() => {
         let board = gameBoard.getBoard();
         if (board[0] === board[1] && board[1] === board[2]) {
             if (board[0] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[3] === board[4] && board[4] === board[5]) {
             if (board[3] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[3] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[6] === board[7] && board[7] === board[8]) {
             if (board[6] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[6] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[0] === board[3] && board[3] === board[6]) {
             if (board[0] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[1] === board[4] && board[4] === board[7]) {
             if (board[1] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[1] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[2] === board[5] && board[5] === board[8]) {
             if (board[2] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[2] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[0] === board[4] && board[4] === board[8]) {
             if (board[0] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[2] === board[4] && board[4] === board[6]) {
             if (board[2] === 'X') {
-                console.log(_players[0].getName() + ' wins!');
+                winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[2] === 'O') {
-                console.log(_players[1].getName() + ' wins!');
+                winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (_turnNumber === 9) {
-            console.log("It's a draw!");
+            winnerMsg.textContent = "It's a draw!";
             return;
         }
     };
