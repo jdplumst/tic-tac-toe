@@ -4,6 +4,10 @@ const gameBoardCells = document.querySelectorAll('td');
 const gameBoard = (() => {
     let _board = ['','','','','','','','',''];
 
+    function getBoard() {
+        return _board;
+    };
+
     // Checks the turn number and selected board cell to update the board
     function updateBoard() {
         let index = gameState.getIndex();
@@ -24,7 +28,11 @@ const gameBoard = (() => {
         }
     };
 
-    return {displayBoard, updateBoard};
+    return {
+        getBoard, 
+        updateBoard, 
+        displayBoard
+    };
 })();
 
 // Player factory
@@ -60,6 +68,89 @@ const gameState = (() => {
         return _index;
     };
 
+    // Checks for winner of game
+    // There are 8 winner patterns for each player plus draw pattern
+    // Winner patterns: [012, 345, 678, 036, 147, 258, 048, 246]
+    function checkWinner() {
+        let board = gameBoard.getBoard();
+        if (board[0] === board[1] && board[1] === board[2]) {
+            if (board[0] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[0] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[3] === board[4] && board[4] === board[5]) {
+            if (board[3] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[3] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[6] === board[7] && board[7] === board[8]) {
+            if (board[6] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[6] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[0] === board[3] && board[3] === board[6]) {
+            if (board[0] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[0] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[1] === board[4] && board[4] === board[7]) {
+            if (board[1] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[1] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[2] === board[5] && board[5] === board[8]) {
+            if (board[2] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[2] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[0] === board[4] && board[4] === board[8]) {
+            if (board[0] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[0] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (board[2] === board[4] && board[4] === board[6]) {
+            if (board[2] === 'X') {
+                console.log(_players[0].getName() + ' wins!');
+                return;
+            } else if (board[2] === 'O') {
+                console.log(_players[1].getName() + ' wins!');
+                return;
+            }
+        } 
+        if (_turnNumber === 9) {
+            console.log("It's a draw!");
+            return;
+        }
+    };
+
     // Updates game board accordingly when a player clicks on the board
     gameBoardCells.forEach(cell => {
         cell.addEventListener('click', () => {
@@ -70,9 +161,16 @@ const gameState = (() => {
                 gameBoard.updateBoard();
                 gameBoard.displayBoard();
                 _nextTurn();
+                checkWinner();
             }
         })
     });
 
-    return {getTurnNumber, getPlayerOnePiece, getPlayerTwoPiece, getIndex};
+    return {
+        getTurnNumber, 
+        getPlayerOnePiece, 
+        getPlayerTwoPiece, 
+        getIndex, 
+        checkWinner
+    };
 })();
