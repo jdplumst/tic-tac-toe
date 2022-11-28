@@ -1,7 +1,7 @@
 const gameBoardCells = document.querySelectorAll('td');
 
 // gameBoard module
-let gameBoard = (() => {
+const gameBoard = (() => {
     let _board = ['X','X','X','O','O','O','X','O','X'];
 
     function updateBoard() {
@@ -9,12 +9,12 @@ let gameBoard = (() => {
             gameBoardCells[i].textContent = _board[i];
             gameBoardCells[i].style.textAlign = 'center';
         }
-    }
+    };
 
     // gameBoardCells.forEach(cell => {
     //     cell.addEventListener('click', () => {
     //         let index = cell.getAttribute('id');
-    //         _board[index] = '';
+    //         _board[index] = ''; // use gameState to check player turn
     //         if (cell.textContent !== '') {
     //             console.log("can't play there!");
     //         }
@@ -25,3 +25,10 @@ let gameBoard = (() => {
         updateBoard
     };
 })();
+
+// Player factory
+const Player = (name, piece) => {
+    const getName = () => name;
+    const getPiece = () => piece;
+    return {getName, getPiece};
+};
