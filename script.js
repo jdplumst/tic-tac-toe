@@ -1,5 +1,8 @@
 const gameBoardCells = document.querySelectorAll('td');
 const winnerMsg = document.querySelector('.winner');
+const modal = document.querySelector('.modal');
+const modalContent = document.querySelector('.modal-content');
+const playAgain = document.querySelector('.modal-btn button');
 
 // gameBoard module
 const gameBoard = (() => {
@@ -12,7 +15,10 @@ const gameBoard = (() => {
     // Checks the turn number and selected board cell to update the board
     function updateBoard() {
         let index = gameState.getIndex();
-        if (index === -1) return; // Prevent board from updating before game start
+        if (index === -1) { // Prevent board from updating before game start
+            _board = ['','','','','','','','',''];
+            return;
+        } 
         let turn = gameState.getTurnNumber();
         if (turn % 2 === 0) { // Player 1's turn
             _board[index] = gameState.getPlayerOnePiece();
@@ -76,77 +82,94 @@ const gameState = (() => {
         let board = gameBoard.getBoard();
         if (board[0] === board[1] && board[1] === board[2]) {
             if (board[0] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[3] === board[4] && board[4] === board[5]) {
             if (board[3] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[3] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[6] === board[7] && board[7] === board[8]) {
             if (board[6] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[6] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[0] === board[3] && board[3] === board[6]) {
             if (board[0] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[1] === board[4] && board[4] === board[7]) {
             if (board[1] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[1] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[2] === board[5] && board[5] === board[8]) {
             if (board[2] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[2] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[0] === board[4] && board[4] === board[8]) {
             if (board[0] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[2] === board[4] && board[4] === board[6]) {
             if (board[2] === 'X') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[2] === 'O') {
+                modal.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (_turnNumber === 9) {
+            modal.style.display = 'block';
             winnerMsg.textContent = "It's a draw!";
             return;
         }
@@ -165,6 +188,14 @@ const gameState = (() => {
                 checkWinner();
             }
         })
+    });
+
+    playAgain.addEventListener('click', () => {
+        modal.style.display = 'none';
+        _index = -1;
+        gameBoard.updateBoard(); // Resets board with _index = -1
+        gameBoard.displayBoard();
+        _turnNumber = 0;
     });
 
     return {
