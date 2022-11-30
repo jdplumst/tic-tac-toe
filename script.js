@@ -192,17 +192,18 @@ const gameState = (() => {
     });
 
     // Start button
-    startGame.addEventListener('click', () => {
-        event.preventDefault(); // Prevent form from submitting
+    startGame.addEventListener('click', (event) => {
         let playerOneName = document.querySelector('#p1-name').value;
         let playerTwoName = document.querySelector('#p2-name').value;
+        if (playerOneName === '' || playerTwoName === '') return;
         _players[0] = Player(playerOneName, 'X');
         _players[1] = Player(playerTwoName, 'O');
         modalStart.style.display = 'none';
+        event.preventDefault(); // Prevent form from submitting
     });
 
     // Play Again button
-    playAgain.addEventListener('click', (event) => {
+    playAgain.addEventListener('click', () => {
         modalEnd.style.display = 'none';
         _index = -1;
         gameBoard.updateBoard(); // Resets board with _index = -1
