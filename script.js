@@ -1,8 +1,9 @@
 const gameBoardCells = document.querySelectorAll('td');
 const winnerMsg = document.querySelector('.winner');
-const modal = document.querySelector('.modal');
-const modalContent = document.querySelector('.modal-content');
-const playAgain = document.querySelector('.modal-btn button');
+const modalStart = document.querySelector('.modal-start');
+const modalEnd = document.querySelector('.modal-end');
+const startGame = document.querySelector('.start-btn');
+const playAgain = document.querySelector('.end-btn');
 
 // gameBoard module
 const gameBoard = (() => {
@@ -52,7 +53,7 @@ const Player = (name, piece) => {
 // gameState module
 const gameState = (() => {
     let _turnNumber = 0;
-    let _players = [Player('Jimmy', 'X'), Player('Bob', 'O')];
+    let _players = [];
     let _index = -1; // Game Board index
 
     function _nextTurn() {
@@ -82,94 +83,94 @@ const gameState = (() => {
         let board = gameBoard.getBoard();
         if (board[0] === board[1] && board[1] === board[2]) {
             if (board[0] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[3] === board[4] && board[4] === board[5]) {
             if (board[3] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[3] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[6] === board[7] && board[7] === board[8]) {
             if (board[6] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[6] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[0] === board[3] && board[3] === board[6]) {
             if (board[0] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[1] === board[4] && board[4] === board[7]) {
             if (board[1] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[1] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[2] === board[5] && board[5] === board[8]) {
             if (board[2] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[2] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[0] === board[4] && board[4] === board[8]) {
             if (board[0] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[0] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (board[2] === board[4] && board[4] === board[6]) {
             if (board[2] === 'X') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[0].getName() + ' wins!';
                 return;
             } else if (board[2] === 'O') {
-                modal.style.display = 'block';
+                modalEnd.style.display = 'block';
                 winnerMsg.textContent = _players[1].getName() + ' wins!';
                 return;
             }
         } 
         if (_turnNumber === 9) {
-            modal.style.display = 'block';
+            modalEnd.style.display = 'block';
             winnerMsg.textContent = "It's a draw!";
             return;
         }
@@ -190,8 +191,19 @@ const gameState = (() => {
         })
     });
 
-    playAgain.addEventListener('click', () => {
-        modal.style.display = 'none';
+    // Start button
+    startGame.addEventListener('click', () => {
+        event.preventDefault(); // Prevent form from submitting
+        let playerOneName = document.querySelector('#p1-name').value;
+        let playerTwoName = document.querySelector('#p2-name').value;
+        _players[0] = Player(playerOneName, 'X');
+        _players[1] = Player(playerTwoName, 'O');
+        modalStart.style.display = 'none';
+    });
+
+    // Play Again button
+    playAgain.addEventListener('click', (event) => {
+        modalEnd.style.display = 'none';
         _index = -1;
         gameBoard.updateBoard(); // Resets board with _index = -1
         gameBoard.displayBoard();

@@ -1,3 +1,7 @@
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
 /* Game Board */
 
 table {
@@ -22,8 +26,8 @@ td {
 }
 
 /* Modal */
-.modal {
-    display: none;
+.modal-start,
+.modal-end {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -34,11 +38,48 @@ td {
     background-color: rgba(0,0,0,0.7);
 }
 
+.modal-start {
+    display: block;
+}
+
+.modal-end {
+    display: none;
+}
+
 .modal-content {
     background-color: white;
     margin: 15% auto;
     border: 1px solid grey;
     width: 80%;
+}
+
+/* Starting Modal */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.form-row {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.form-row input[type='text'] {
+    background-color: #FFFFFF;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    width: calc(100% - 20px);
+    padding: 7px;
+    font-size: 14px;
+}
+
+.form-row label {
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 /* Play Again Modal */
@@ -51,4 +92,16 @@ td {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 5px;
+}
+
+/* Tablets and Larger */
+@media only screen and (min-width: 600px) {
+    .form-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .form-row {
+        width: 40%;
+    }
 }
