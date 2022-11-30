@@ -18,6 +18,7 @@ table {
 td {
     height: 100px;
     width: 100px;
+    font-size: 50px;
 }
 
 .vertical {
@@ -90,14 +91,39 @@ td {
 /* Play Again Modal */
 .winner {
     text-align: center;
-    margin-top: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 50px;
 }
 
 .modal-btn {
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
+
+button {
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #FFFFFF;
+    background-color: #5392da;
+
+    border: none;
+    border-radius: 3px;
+
+    padding: 10px 40px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #73a8e5;
+  }
+  
+button:active {
+    background-color: #3671b4;
+  }
 
 /* Tablets and Larger */
 @media only screen and (min-width: 600px) {
