@@ -4,6 +4,10 @@ const modalStart = document.querySelector('.modal-start');
 const modalEnd = document.querySelector('.modal-end');
 const startGame = document.querySelector('.start-btn');
 const playAgain = document.querySelector('.end-btn');
+const singlePlayer = document.querySelector('#single-player');
+const multiPlayer = document.querySelector('#multi-player');
+const playerOne = document.querySelector('#p1-name');
+const playerTwo = document.querySelector('#p2-name');
 
 // gameBoard module
 const gameBoard = (() => {
@@ -193,9 +197,12 @@ const gameState = (() => {
 
     // Start button
     startGame.addEventListener('click', (event) => {
-        let playerOneName = document.querySelector('#p1-name').value;
-        let playerTwoName = document.querySelector('#p2-name').value;
-        if (playerOneName === '' || playerTwoName === '') return;
+        let playerOneName = playerOne.value;
+        let playerTwoName = playerTwo.value;
+        if (playerOneName === '' || 
+        (playerTwoName === '' && playerTwo.disabled === false)) {
+            return;
+        }
         _players[0] = Player(playerOneName, 'X');
         _players[1] = Player(playerTwoName, 'O');
         modalStart.style.display = 'none';
@@ -209,6 +216,18 @@ const gameState = (() => {
         gameBoard.updateBoard(); // Resets board with _index = -1
         gameBoard.displayBoard();
         _turnNumber = 0;
+    });
+
+    // Disable Player Two Name input
+    singlePlayer.addEventListener('click', () => {
+        playerTwo.disabled = true;
+        playerTwo.required = false;
+    });
+
+    // Enable Player Two Name input
+    multiPlayer.addEventListener('click', () => {
+        playerTwo.disabled = false;
+        playerTwo.required = true;
     });
 
     return {

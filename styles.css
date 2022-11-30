@@ -83,9 +83,20 @@ td {
     font-size: 14px;
 }
 
+input[type="text"]:disabled {
+    opacity: 0.5;
+}
+
 .form-row label {
     margin-bottom: 15px;
     font-weight: bold;
+}
+
+.checkbox-item {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align: center;
 }
 
 /* Play Again Modal */
@@ -134,10 +145,16 @@ button:active {
 
     .form-content {
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
     }
 
     .form-row {
         width: 40%;
+        flex: 1 50%;
+    }
+
+    fieldset {
+        flex: 1 50%;
     }
 }
