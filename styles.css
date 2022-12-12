@@ -5,8 +5,6 @@ body {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    /* background-color: white; */
-    /* background-image: linear-gradient(to right, #00b4db, #0083b0); */
     background-image: linear-gradient(to right, #06dab7, #8fd4d0);
 
 }
